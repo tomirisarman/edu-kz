@@ -16,3 +16,4 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('register_domain');
 });
+Route::post('/register', [\App\Http\Controllers\OrgRegisterController::class, 'submitForm'])->name('register');

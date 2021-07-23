@@ -56,88 +56,140 @@
     <div class="container-fluid bg-info py-4">
         <div class="container bg-light mt-4 p-5">
             <div class="row"><h3>Регистрация</h3></div>
-            <div class="row">
-                <div class="col-md-4 mt-3">
+            <form action="{{route('register')}}" method="post" enctype="multipart/form-data" class="">
+                @csrf
+            <div class="form-row">
+                <div class="form-group col-md-4 mt-3">
                     <label for="" class="form-label">ФИО руководителя</label>
-                    <input type="text" class="form-control">
+                    <input name="head_fio" type="text" class="form-control @error('head_fio') is-invalid @enderror">
+                    @error('head_fio')
+                    <p class="text-danger">{{ $message }}</p>
+                    @enderror
                 </div>
-                <div class="col-md-4 mt-3">
+                <div class="form-group col-md-4 mt-3">
                     <label for="" class="form-label">Название организации</label>
-                    <input type="text" class="form-control">
+                    <input name="name" type="text" class="form-control @error('name') is-invalid @enderror">
+                    @error('name')
+                    <p class="text-danger">{{ $message }}</p>
+                    @enderror
                 </div>
-                <div class="col-md-4 mt-3">
+                <div class="form-group col-md-4 mt-3">
                     <label for="" class="form-label">Юридический адрес</label>
-                    <input type="text" class="form-control">
+                    <input name="address" type="text" class="form-control @error('address') is-invalid @enderror">
+                    @error('address')
+                    <p class="text-danger">{{ $message }}</p>
+                    @enderror
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-4 mt-3">
+            <div class="form-row">
+                <div class="form-group col-md-4 mt-3">
                     <label for="" class="form-label">Эл. почта организации</label>
-                    <input type="text" class="form-control">
+                    <input name="email" type="text" class="form-control @error('email') is-invalid @enderror">
+                    @error('email')
+                    <p class="text-danger">{{ $message }}</p>
+                    @enderror
                 </div>
-                <div class="col-md-4 mt-3">
+                <div class="form-group col-md-4 mt-3">
                     <label for="" class="form-label">Номер телефона организации</label>
-                    <input type="text" class="form-control">
+                    <input name="phone" type="text" class="form-control @error('phone') is-invalid @enderror">
+                    @error('phone')
+                    <p class="text-danger">{{ $message }}</p>
+                    @enderror
                 </div>
-                <div class="col-md-4 mt-3">
+                <div class="form-group col-md-4 mt-3">
                     <label for="" class="form-label">Название банка</label>
-                    <input type="text" class="form-control">
+                    <input name="bank_name" type="text" class="form-control @error('bank_name') is-invalid @enderror">
+                    @error('bank_name')
+                    <p class="text-danger">{{ $message }}</p>
+                    @enderror
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-4 mt-3">
+            <div class="form-row">
+                <div class="form-group col-md-4 mt-3">
                     <label for="" class="form-label">БИН</label>
-                    <input type="text" class="form-control">
+                    <input name="bin" type="text" class="form-control @error('bin') is-invalid @enderror">
+                    @error('bin')
+                    <p class="text-danger">{{ $message }}</p>
+                    @enderror
                 </div>
-                <div class="col-md-4 mt-3">
+                <div class="form-group col-md-4 mt-3">
                     <label for="" class="form-label">БИК</label>
-                    <input type="text" class="form-control">
+                    <input name="bik" type="text" class="form-control @error('bik') is-invalid @enderror">
+                    @error('bik')
+                    <p class="text-danger">{{ $message }}</p>
+                    @enderror
                 </div>
-                <div class="col-md-4 mt-3">
+                <div class="form-group col-md-4 mt-3">
                     <label for="" class="form-label">ИИК</label>
-                    <input type="text" class="form-control">
+                    <input name="iik" type="text" class="form-control @error('iik') is-invalid @enderror">
+                    @error('iik')
+                    <p class="text-danger">{{ $message }}</p>
+                    @enderror
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-4 mt-3">
+            <div class="form-row">
+                <div class="form-group col-md-4 mt-3">
                     <label for="" class="form-label">ФИО ответственного лица</label>
-                    <input type="text" class="form-control">
+                    <input name="otv_fio" type="text" class="form-control @error('otv_fio') is-invalid @enderror">
+                    @error('otv_fio')
+                    <p class="text-danger">{{ $message }}</p>
+                    @enderror
                 </div>
-                <div class="col-md-4 mt-3">
+                <div class="form-group col-md-4 mt-3">
                     <label for="" class="form-label">Телефон ответственного лица</label>
-                    <input type="text" class="form-control">
+                    <input name="otv_phone" type="text" class="form-control @error('otv_phone') is-invalid @enderror">
+                    @error('otv_phone')
+                    <p class="text-danger">{{ $message }}</p>
+                    @enderror
                 </div>
-                <div class="col-md-4 mt-3">
+                <div class="form-group col-md-4 mt-3">
                     <label for="" class="form-label">Эл. почта ответственного лица</label>
-                    <input type="text" class="form-control">
+                    <input name="otv_email" type="text" class="form-control @error('otv_email') is-invalid @enderror">
+                    @error('otv_email')
+                    <p class="text-danger">{{ $message }}</p>
+                    @enderror
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-4 mt-3">
+            <div class="form-row">
+                <div class="form-group col-md-4 mt-3">
                     <label for="" class="form-label">Почтовый индекс</label>
-                    <input type="text" class="form-control">
+                    <input name="mail_index" type="text" class="form-control @error('mail_index') is-invalid @enderror">
+                    @error('mail_index')
+                    <p class="text-danger">{{ $message }}</p>
+                    @enderror
+                    Ах
                 </div>
-                <div class="col-md-4 mt-3">
+                <div class="form-group col-md-4 mt-3">
                     <label for="" class="form-label">Желаемое название доменного имени</label>
-                    <input type="text" class="form-control">
+                    <input name="domain_name" type="text" class="form-control @error('domain_name') is-invalid @enderror">
+                    @error('domain_name')
+                    <p class="text-danger">{{ $message }}</p>
+                    @enderror
+
                 </div>
-                <div class="col-md-4 mt-3">
+                <div class="form-group col-md-4 mt-3">
                     <div class="captcha">
                         {!! captcha_image_html('ExampleCaptcha') !!}
-                        <input class="form-control text-center" type="text" id="CaptchaCode" name="CaptchaCode" style="margin-top:5px;">
+                        <input name="captcha" class="form-control @error('captcha') is-invalid @enderror text-center" type="text" id="CaptchaCode" style="margin-top:5px;">
+                        @error('captcha')
+                        <p class="text-danger">{{ $message }}</p>
+                        @enderror
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-4 mt-3">
+            <div class="form-row">
+                <div class="form-group col-md-4 mt-3">
                     <label for="">Загрузите копию свидетельства о государственной регистрации организации или другой документ удостоверяющий организацию в pdf (Размер не должен превышать 2.00 МиБ)*</label>
-                    <input type="file" class="form-control">
+                    <input name="license_file" type="file" class="form-control @error('license_file') is-invalid @enderror">
+                    @error('license_file')
+                    <p class="text-danger">{{ $message }}</p>
+                    @enderror
                 </div>
-                <div class="col-md-4 my-3 offset-md-4">
+                <div class="form-group col-md-4 my-3 offset-md-4">
                     <button type="submit" class="btn btn-primary w-100">Отправить</button>
                 </div>
             </div>
-
+            </form>
         </div>
     </div>
 
