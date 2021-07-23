@@ -18,6 +18,9 @@
         body {
             font-family: 'Nunito';
         }
+        .bg-color{
+            background: #F8F4F1;
+        }
     </style>
     <script
         src="https://code.jquery.com/jquery-3.6.0.min.js"
@@ -53,9 +56,20 @@
         </div>
     </div>
 
-    <div class="container-fluid bg-info py-4">
-        <div class="container bg-light mt-4 p-5">
-            <div class="row"><h3>Регистрация</h3></div>
+    <div class="container-fluid bg-white py-4">
+        <div class="container">
+            <div class="row">
+                <h2 class="font-weight-bold">Регистрация</h2>
+            </div>
+            <div class="row">
+                @if (session('success'))
+                    <div class="alert alert-success">
+                        {{ session('success') }}
+                    </div>
+                @endif
+            </div>
+        </div>
+        <div class="container bg-color mt-4 p-5">
             <form action="{{route('register')}}" method="post" enctype="multipart/form-data" class="">
                 @csrf
             <div class="form-row">
@@ -157,7 +171,6 @@
                     @error('mail_index')
                     <p class="text-danger">{{ $message }}</p>
                     @enderror
-                    Ах
                 </div>
                 <div class="form-group col-md-4 mt-3">
                     <label for="" class="form-label">Желаемое название доменного имени</label>
@@ -180,7 +193,7 @@
             <div class="form-row">
                 <div class="form-group col-md-4 mt-3">
                     <label for="">Загрузите копию свидетельства о государственной регистрации организации или другой документ удостоверяющий организацию в pdf (Размер не должен превышать 2.00 МиБ)*</label>
-                    <input name="license_file" type="file" class="form-control @error('license_file') is-invalid @enderror">
+                    <input name="license_file" type="file" accept=".pdf,.jpg,.jpeg,.png" class="form-control @error('license_file') is-invalid @enderror">
                     @error('license_file')
                     <p class="text-danger">{{ $message }}</p>
                     @enderror

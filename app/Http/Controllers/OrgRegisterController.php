@@ -10,36 +10,39 @@ class OrgRegisterController extends Controller
     public function submitForm(Request $request)
     {
         $rules = [
-            'name' => ['required', 'regex:/^[\sА-Яа-яЁёa-zA-ZӘәІіҢңҒғҮүҰұҚқӨөҺһ0-9".,\-#№@&()]/'],
-            'address' => ['required', 'regex:/^[\sА-Яа-яЁёa-zA-ZӘәІіҢңҒғҮүҰұҚқӨөҺһ0-9".,\-#№@&()]/'],
+            'name' => ['required', 'regex:/^[\sА-Яа-яЁёa-zA-ZӘәІіҢңҒғҮүҰұҚқӨөҺһ0-9".,\-#№@&()]+$/u'],
+            'address' => ['required', 'regex:/^[\sА-Яа-яЁёa-zA-ZӘәІіҢңҒғҮүҰұҚқӨөҺһ0-9"\.,\-#№@&()]+$/u'],
             'mail_index' => 'required|numeric',
             'phone' => 'required|numeric',
             'email' => 'required|email',
             'bin' => 'required|numeric|digits:12',
-            'iik' => 'required|',
-            'bank_name' => 'required|',
+            'iik' => ['required', 'size:20', 'regex:/^(KZ)/'],
+            'bank_name' => ['required', 'regex:/^[A-Za-zА-Яа-яӘәІіҢңҒғҮүҰұҚқӨөҺһ\- ]+$/u'],
             'bik' => ['required', 'size:8', 'regex:/^[a-zA-Z0-9]+$/'],
-            'head_fio' => ['required', 'regex:/^[А-Яа-яЁёa-zA-ZӘәІіҢңҒғҮүҰұҚқӨөҺһ-]/', 'not_regex:[",-#№@&()?!+=^%$:;`]'],
-            'otv_fio' => ['required', 'regex:/^[А-Яа-яЁёa-zA-ZӘәІіҢңҒғҮүҰұҚқӨөҺһ-]/'],
+            'head_fio' => ['required', 'regex:/^[A-Za-zА-Яа-яӘәІіҢңҒғҮүҰұҚқӨөҺһ\- ]+$/u'],
+            'otv_fio' => ['required', 'regex:/^[A-Za-zА-Яа-яӘәІіҢңҒғҮүҰұҚқӨөҺһ\- ]+$/u'],
             'otv_phone' => 'required|numeric',
             'otv_email' => 'required|email',
-            'domain_name' => 'required|',
+            'domain_name' => 'required|regex:/(.edu.kz)$/u',
             'captcha' => 'required|valid_captcha',
-            'license_file' => 'required|size:max:2048',
+            'license_file' => 'required|max:2048',
         ];
         $messages = [
             'required' => 'Это поле является обязательным.',
             'numeric' => 'Это поле должно быть числом.',
-            'email' => 'Не является email-адресом',
+            'email' => 'Не является email-адресом.',
             'name.regex' => 'Это поле должно содержать латиницу, кириллицу или казахские буквы, цифры или символы: ".,\-#№@&()',
             'address.regex' => 'Это поле должно содержать латиницу, кириллицу или казахские буквы, цифры или символы: ".,\-#№@&()',
-            'head_fio.regex' => 'Это поле должно содержать латиницу, кириллицу или казахские буквы',
-            'otv_fio.regex' => 'Это поле должно содержать латиницу, кириллицу или казахские буквы',
-            'bik.regex' =>
-                'Это поле должно содержать латиницу и цифры',
+            'head_fio.regex' => 'Это поле должно содержать латиницу, кириллицу или казахские буквы.',
+            'otv_fio.regex' => 'Это поле должно содержать латиницу, кириллицу или казахские буквы.',
+            'bank_name.regex' => 'Это поле должно содержать латиницу, кириллицу или казахские буквы.',
+            'bik.regex' => 'Это поле должно содержать латиницу и цифры',
+            'iik.regex' => 'ИИК начинается с "KZ***".',
             'digits:12' => 'Поле должно содержать 12 цифр.',
             'size:8' => 'Поле должно содержать 8 символов.',
-            'license_file.size' => 'Размер файла должен быть менее 2.0 Мб.',
+            'size:20' => 'Поле должно содержать 20 символов.',
+            'domain_name.regex' => 'Укажите адрес в формате myschool.edu.kz.',
+            'license_file.max' => 'Размер файла должен быть не более 2.0 Мб.',
             'valid_captcha' => 'Неправильное слово из капчи.',
         ];
         $validator = Validator::make($request->all(), $rules, $messages);
@@ -50,6 +53,6 @@ class OrgRegisterController extends Controller
                 ->withInput();
         };
         return redirect()->back()
-            ->withInput();
+            ->with('success', 'Ваши данные успешно отправлены на обработку!');
     }
 }
