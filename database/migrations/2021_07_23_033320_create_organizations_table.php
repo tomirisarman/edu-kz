@@ -21,7 +21,7 @@ class CreateOrganizationsTable extends Migration
             $table->string('email', 100);
             $table->string('phone', 50);
             $table->string('bank_name', 100);
-            $table->string('bin', 10);
+            $table->string('bin', 12);
             $table->string('bik', 100);
             $table->string('iik', 20);
             $table->string('otv_fio', 100);
